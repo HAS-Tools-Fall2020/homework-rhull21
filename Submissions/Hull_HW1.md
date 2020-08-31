@@ -10,3 +10,6 @@ It looks like flow is at its nadir right now, but gradually
 increases to ~ 200 cfs in late Nov and early Dec.
 
 Speculating about process - SW losses to Evapo/Transpiration decrease during cooler months?
+
+## Grade
+3/3 - Great job!
