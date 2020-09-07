@@ -9,3 +9,6 @@ I pretty much kept the rationale from last week's submission.
 I spent a little while trying to get the script working, so that wore me out! But I got it all working now!
 
 Thanks - Quinn
+
+# Grade
+3/3 - Great, glad you got it working!
