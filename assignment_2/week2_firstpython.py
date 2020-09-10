@@ -33,7 +33,7 @@ data.tail(6) # look at the last  x rows  of the data
 data.iloc[350:360] # grab any subset of rows to look at
 data.flow[350:380]  #Grab a subset of just the flow data dat look at
 # # To simulate original had to use a range of data, and include date+time, as below
-# data.loc['1990-01-01 00:00':'1990-01-02 00:00']  #find a specific date
+data.loc['1990-01-01 00:00':'1990-01-02 00:00']  #find a specific date
 # # OR (doesn't work)
 # data[data['A'].str.contains('1990-01-01')]
 
