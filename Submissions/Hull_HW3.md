@@ -2,7 +2,12 @@
 Robert Hull
 09102020
 
--------
+---------
+# Grade
+
+3/3 - Great work!  We will look at some more efficient approaches this week and next but I really like what you did here. 
+
+---
 
 ### Assignment Questions
 
@@ -13,11 +18,11 @@ Robert Hull
         * month -> 'int'
         * year -> 'int'
         * day -> 'int'
-        * date -> 'str' 
+        * date -> 'str'
     * each list is identical in length (1106346 items)
 
 2. How many times was the daily flow greater than your prediction in the month of September (express your answer in terms of the total number of times and as a percentage)?
-    * My prediction (I'm assuming) is my prediction from row 8/31/2020, column 'week1'. 
+    * My prediction (I'm assuming) is my prediction from row 8/31/2020, column 'week1'.
         * = 60 cfs
     * For the first 10 days of September in 2020 (through 09/10/2020)
         * = 3 times
@@ -38,11 +43,8 @@ Robert Hull
     * I would summarize by saying there is a lot of variation year-to-year in September and that although the mean is slightly lower in the second half in September than in the first half, its not statistically significant. Flow in the latter half tends to be more variable (larger std)
 
 ### Justification for Forecast
-    * I made this enormous for-loop conditional thing that is probably super inefficient (it takes a long time to run) but I couldn't figure out the list collections things well enough. 
+    * I made this enormous for-loop conditional thing that is probably super inefficient (it takes a long time to run) but I couldn't figure out the list collections things well enough.
 
     * From this I decided to find the average for every single week in the forecast 1-16 from previous years starting in 2010. I used those as my projections:
 
     `196, 160, 157, 137, 112, 115, 188, 132, 130, 135, 145, 157, 179, 186, 264, 389`
-
-
-
