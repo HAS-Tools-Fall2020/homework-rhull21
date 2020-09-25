@@ -3,6 +3,9 @@ Robert Hull
 09172020
 
 ---------
+### Grade
+3/3 - great job.  Next time don't include the actual code snippets here though you can just include a text summary with your graphs :) 
+___
 
 ### Assignment Questions
 
