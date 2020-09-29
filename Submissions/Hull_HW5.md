@@ -2,6 +2,9 @@
 Robert Hull
 09252020
 
+____
+## Grade
+3/3 - Nice job!  I like your regression approach. 
 __________
 
 1) Provide a summary of the data frames properties.
@@ -91,7 +94,7 @@ What data types do each of the columns have?
           9       5590.0  
           10      1910.0  
           11      4600.0  
-          12     28700.0 
+          12     28700.0
 
 4) Provide a table with the 5 highest and 5 lowest flow values for the period of record. Include the date, month and flow values in your summary.
 
@@ -519,12 +522,12 @@ What data types do each of the columns have?
               2020-09-11 00:00:00
 
 
-Forecast: 
+Forecast:
   Forecast
   Similar approach as last time
    Generate best fit lines for both 2019 and 2020 (similar dry yearss)
     first generate for only 09/01 - present for 2019, 2020
-    Extrapolate from best fit line results for next two weeks (2020 only) 
+    Extrapolate from best fit line results for next two weeks (2020 only)
      09-27 to 10/03
       using 'line' function "y = mx + b", where x = 30 (roughly the mid-point)
 
@@ -542,11 +545,10 @@ Forecast:
     use this 'difference' to calculate mean values by subtracting from 2019 linear regression for all of 2019
      In the 2019 series, select by date
 
-     extract the number of days from 09/02/2019 
+     extract the number of days from 09/02/2019
   from https://stackoverflow.com/questions/37840812/pandas-subtracting-two-date-columns-and-the-result-being-an-integer
 
 
      Calculate a new regression for all 2019 data
   This yields really weird results early (negative flow) but I'm tired
      -211,-157,-103,-49,4,58,111,165,219,273,327,381,435,488,542,596
-
