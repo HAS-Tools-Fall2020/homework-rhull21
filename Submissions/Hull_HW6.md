@@ -2,6 +2,10 @@
 ## Robert Hull
 ### 10022020
 ---------------------------------------------------------------
+### Grade
+3/3 - Great job nice graphs!
+
+___
 0) Review the starter code I provided to see how to build an autoregressive(AR) model.
 
 - Things I like about this code:
@@ -90,7 +94,7 @@
 
   ![](assets/Hull_HW6-d62cb0d2.png)
 
-  
+
   ![](assets/Hull_HW6-d99ba1e8.png)
 
 2) Provide an analysis of your final model performance. This should include at least one graph that shows the historical vs predicted streamflow and some discussion of qualitatively how you think your model is good or bad.
