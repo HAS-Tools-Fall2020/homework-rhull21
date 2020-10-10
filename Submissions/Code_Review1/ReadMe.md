@@ -5,6 +5,32 @@
 
 This is the readme for `Hull_HW7.py`. Hull_HW7 is an autoregressive streamflow prediction model run in python. The script uses some simple loops and graphing techniques to predict streamflow on the river we are studying in class.
 
+Specifically, this script runs 4 distinct regression ('train') and prediction ('test') scenarios to test the efficacy of the model. These scenarios are based on strategic slicing of the streamflow dataset, as below. (Step 2 in `Hull_HW7.py`)
+
+    train           |          test
+    082020 : Now    |  082010 : 082015
+    082019 : Now    |  082010 : 082015
+    082015 : Now    |  082010 : 082015
+    082015 : 08219  |  082019 : Now
+
+Additionally, it uses 5 different combinations of predictive variables to run linear regressions for each of the above scenarios, as described below. (See `reg_list` in `Hull_HW7.py`)
+
+  - 1 week lag streamflow data
+  - 1 week & 2 week lag
+  - 1 week & 1 month lag
+  - The square root of 1 week lag
+  - 1 week & 1 week square root & 1 month lag*
+
+nb: each variable above delimited by '&'
+
+Finally, the script loops through all 4 scenarios, and again through all 5 different combinations of predictive variables to: 1) run, 2) assess, and 3) visualize the fit of 20 separate regressions.
+
+The user will find these 20 results useful in understanding the results of different approaches to regressing and predicting streamflow.
+
+Ultimately, however, our prediction for the next two weeks uses the simplest model at our fingertips. The regression uses the 1-week-lagged weekly flow since August 2020 as its predictive variable. (See `Weekly Forecast`)
+
+Finally, we don't use that for the forecast as is easily seen by the final line in the script.
+
 A user should follow these steps to use:
 * install the following packages
   * numpy

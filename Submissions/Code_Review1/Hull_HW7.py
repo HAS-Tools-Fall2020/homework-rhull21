@@ -96,7 +96,7 @@ floww = floww.join(np.log(floww), rsuffix='_sqrt')
 
 # %%
 # Step 2: pick periods of regression (train) and prediction (test)
-# 3 scenarios: (see below)
+# 4 scenarios: (see below)
 # # train           |          test
 # # 082020 : Now    |  082010 : 082015
 # # 082019 : Now    |  082010 : 082015
@@ -128,9 +128,9 @@ test_list.append(floww.iloc[loc_list[1]:-1])
 # Step 4: Assess quality of fit
 # Step 5: Visualize output
 
-# regression predictive variable scenarios n = 6
-# variables: 1 week, 1 week & 2 week, 1 week & 1 month, 1 week & 1 week log,
-# 1 week & 1 week log & 1 month
+# regression predictive variable scenarios n = 5
+# variables: 1 week, 1 week & 2 week, 1 week & 1 month, 1 week square root,
+# 1 week & 1 week square root & 1 month
 reg_list = [['flow_tm1_x'], ['flow_tm1_x', 'flow_tm2_x'], [
     'flow_tm1_x', 'flow_tm1_y'], ['flow_tm1_x_sqrt'], [
     'flow_tm1_x', 'flow_tm1_x_sqrt', 'flow_tm1_y']]
