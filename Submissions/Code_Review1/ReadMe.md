@@ -51,7 +51,34 @@ A user should follow these steps to use:
 The developer requests that the reviewer supply the following:
 
 1. The week 1 and 2 forecast submission values
-
+# 0,0 I was unable to get the code to execute fully, there was a fatal "key error" on line 111.
 2. The week 1 and 2 regression-based forecast values
-
+# 0,0 See above.
 3. The code review following the rubric
+
+## Code review:
+1. Is the script easy to read and understand? (2 of 3 points)
+ - Are variables and functions named descriptively when useful?
+ Many variable names are not clear to the user or descriptively named, i.e. nm, w, m, s.
+
+ - Are the comments helpful?
+ The comments helped to orient where in the forecast process I was. A good block was describing steps #'s 3,4,5
+
+ - Can you run the script on your own easily?
+    I was unable to run the script successfully, there was a fatal "key error" on line 111.
+ - Are the doc-strings useful?
+    It helps to define what the function does, but is not clear why those values are important.
+
+
+2. Does the code follow PEP8 style consistently? (2 of 3 points)
+ - If not are there specific instances where the script diverges from this style?
+ As run, it has 6 errors, due to variables not being defined.
+
+3. Is the code written succinctly and efficiently? (3 of 3 points)
+ - Are there superfluous code sections?
+ Depending on your point of view, the sections outputting the slope, y-intercept, coefficient of determination are unnecessary, same goes for the plot.
+
+ - Is the use of functions appropriate?
+Yes, the function was helpful for doing something.
+ - Is the code written elegantly without decreasing readability?
+ I think overall the code was reasonably well written.
