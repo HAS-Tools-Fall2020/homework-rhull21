@@ -1,6 +1,8 @@
 # Assignment 8 (modified from Ass. 6 and 7)
 ## Robert Hull
 ### 10132020
+
+### **SCROLL DOWN TO 'FOR LAURA' FOR QUESTIONS AND ANSWERS**
 -------------------------------------------------------------------------
 
 ### Overview
