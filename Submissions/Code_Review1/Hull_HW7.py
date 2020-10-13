@@ -134,7 +134,7 @@ test_list.append(floww.iloc[loc_list[1]:-1])
 reg_list = [['flow_tm1_x'], ['flow_tm1_x', 'flow_tm2_x'], [
     'flow_tm1_x', 'flow_tm1_y'], ['flow_tm1_x_sqrt'], [
     'flow_tm1_x', 'flow_tm1_x_sqrt', 'flow_tm1_y']]
-
+ 
 # loop through all regression and train/test scenarios
 for reg in reg_list:
     for i in range(len(train_list)):
@@ -148,6 +148,8 @@ for reg in reg_list:
         time.sleep(1)
 
         # 4a) assess quality of fit
+        print(x.shape)
+        print(y.shape)
         print(reg)
         print("From ", train.index.min(), " to ", train.index.max())
         print('coefficient of determination:', np.round(s, 2))
