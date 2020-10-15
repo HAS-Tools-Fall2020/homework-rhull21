@@ -1,69 +1,9 @@
 # Assignment 8 (modified from Ass. 6 and 7)
 ## Robert Hull
-### 10132020
-
-### **SCROLL DOWN TO 'FOR LAURA' FOR QUESTIONS AND ANSWERS**
+## 10132020
 -------------------------------------------------------------------------
 
-### Overview
-This is the readme for `Hull_HW8.py`. Hull_HW8 is an autoregressive streamflow prediction model run in python.
-
-This script is considerably modified and simplified from previous assignments 6 and 7.
-
-The primary 'innovation' is the use of the natural log in making prediction
-
-### Functionality
-Its functionality is as follows (described further in steps 1-5 of script)
-* Creates one linear regressions each for two forecasts, (i) week 1 and 2 forecasts and (ii) semester forecasts. Two linear regressions total
-* For both (i) and (ii):
-  * The predictive (independent) variable is the natural logarithm (np.log) of last week's flow data.
-  * The predicted (dependent) variable is the natural logarithm (np.log) of this week's flow data
-* For (i) week 1 and 2 forecasts:
-  * the train ('regression') period is `082020 : Now & 082019 : 122019`
-* For (ii) semester forecasts:
-  * the train ('regression') period is `year > 2010 and year < 2020`
-* iteratively prints the (i) weekly and (ii) semester forecasts in the following forms:
-  * (i)
-    AR Week 1 and 2 forecast prediction:
-
-        Week 1 =  [69.86]
-        Week 2 =  [77.16]
-
-  * (ii)
-
-        AR Semester forecast prediction:
-        Week 1 =  [47.17]
-        Week 2 =  [56.96]
-        Week 3 =  [66.86]
-        Week 4 =  [76.6]
-        Week 5 =  [85.97]
-        Week 6 =  [94.83]
-        Week 7 =  [103.06]
-        Week 8 =  [110.61]
-        Week 9 =  [117.45]
-        Week 10 =  [123.59]
-        Week 11 =  [129.06]
-        Week 12 =  [133.89]
-        Week 13 =  [138.13]
-        Week 14 =  [141.84]
-        Week 15 =  [145.07]
-        Week 16 =  [147.86]
-
-### User Interface
-A user should be able to run this script from terminal with no alteration.
-
-### Troubleshooting
-* install the following packages
-  * numpy
-  * pandas
-  * matplotlib
-  * sckit-learn (only available through pip install)
-  * datetime
-* download the latest daily streamflow data at the Verde river at https://waterdata.usgs.gov/nwis/dv/?site_no=09506000&agency_cd=USGS&amp;referred_module=sw
-* ensure the data is saved under the title 'streamflow_week8.txt'
-* locate the python script Hull_HW7.py relative to the streamflow waterdata like the following: `../../data`
-
-### For Laura
+## For Laura
 
 1. A brief summary of the AR model you built and why. Use whatever graphs you find helpful.
   * My HW7 script included a ton of 'pre-processing' investigation (where there were 20 different regression models) that ultimately impeded my user from being able to run the script.
@@ -102,3 +42,62 @@ A user should be able to run this script from terminal with no alteration.
 4. Describe the part of your script that you are most proud of and why.
 
   *  I'm pretty happy that I figured out the log-log regression, because I've been knocking at the door of that one but getting so hung up on doing fancy things with the code that I didn't have time to explore it very fully.
+
+## Further Documentation
+
+### Overview
+This is the readme for `Hull_HW8.py`. Hull_HW8 is an autoregressive streamflow prediction model run in python.
+
+This script is considerably modified and simplified from previous assignments 6 and 7.
+
+The primary 'innovation' is the use of the natural log in making prediction
+
+### Functionality
+Its functionality is as follows (described further in steps 1-5 of script)
+* Creates one linear regressions each for two forecasts, (i) week 1 and 2 forecasts and (ii) semester forecasts. Two linear regressions total
+* For both (i) and (ii):
+  * The predictive (independent) variable is the natural logarithm (np.log) of last week's flow data.
+  * The predicted (dependent) variable is the natural logarithm (np.log) of this week's flow data
+* For (i) week 1 and 2 forecasts:
+  * the train ('regression') period is `082020 : Now & 082019 : 122019`
+* For (ii) semester forecasts:
+  * the train ('regression') period is `year > 2010 and year < 2020`
+* iteratively prints the (i) weekly and (ii) semester forecasts in the following forms:
+  * (i)
+
+        AR Week 1 and 2 forecast prediction:
+        Week 1 =  [69.86]
+        Week 2 =  [77.16]
+
+  * (ii)
+
+        AR Semester forecast prediction:
+        Week 1 =  [47.17]
+        Week 2 =  [56.96]
+        Week 3 =  [66.86]
+        Week 4 =  [76.6]
+        Week 5 =  [85.97]
+        Week 6 =  [94.83]
+        Week 7 =  [103.06]
+        Week 8 =  [110.61]
+        Week 9 =  [117.45]
+        Week 10 =  [123.59]
+        Week 11 =  [129.06]
+        Week 12 =  [133.89]
+        Week 13 =  [138.13]
+        Week 14 =  [141.84]
+        Week 15 =  [145.07]
+        Week 16 =  [147.86]
+
+### User Interface
+A user should be able to run this script from terminal with no alteration.
+
+### Troubleshooting
+* install the following packages
+  * numpy
+  * pandas
+  * matplotlib
+  * sckit-learn (only available through pip install)
+* download the latest daily streamflow data at the Verde river at https://waterdata.usgs.gov/nwis/dv/?site_no=09506000&agency_cd=USGS&amp;referred_module=sw
+* ensure the data is saved under the title 'streamflow_week8.txt'
+* locate the python script Hull_HW7.py relative to the streamflow waterdata like the following: `../../data`
