@@ -25,7 +25,7 @@ from sklearn.linear_model import LinearRegression
 # Define functions
 # ----------------------------------------------------------------------------------
 
-
+# LC - great documentation
 def makemodel(x, y):
     """returns a multiple regression model
 
@@ -106,10 +106,10 @@ flow_w = np.log(flow_w[['flow', 'flow_tm1']])
 # # (ii) for semester forecast     | year > 2010 and < 2020
 
 # Step 3: subset data to regression (trains)
-# # train_week = training data for weekly forecast
+# LC a little more documentation here to explain what subset of data are actually used for each would be good
+# # train_week = training data for weekly forecast 
 # # train_semester = training data for semester forecast
 # # train_list = list of train_week, train_semester
-
 
 # (i) for 1 and 2 week forecast
 train_week = flow_w[(
@@ -134,6 +134,9 @@ train_list = [train_week, train_semester]
 # Step 5: Make a prediction for (i) 1 and 2 week, and (ii) semester forecast
 # # note1: this counter will help with ifs later
 c = 0
+
+# LC - I really like how you set this up.  It is a littl be hard to follow though
+# some additional documentation of what the different behavior is would be good. 
 
 for t in train_list:
     # Step 4: fit linear regression

@@ -2,6 +2,17 @@
 ## Robert Hull
 ## 10132020
 -------------------------------------------------------------------------
+#### Grade
+- 6/6  Great  job!
+- Readability: 3
+- Style: 3
+- Code: 3
+
+- Nice work responding to Scotts comments.  Definitely a balancing act though, you dont  want to get
+too fancy, but also you can still feel free to  go beyond what we cover in class if you want. No points will be deducted :) 
+- Really great job on your script. I like how it is setup and it's very efficient. 
+- My main comment is to add some more documentation to help the reader understand how it is working. 
+
 
 ## For Laura
 
