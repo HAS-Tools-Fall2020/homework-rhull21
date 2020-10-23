@@ -70,13 +70,15 @@ m, x = makemodel(x,y)
 
 
 # adjust path as necessary
-filename = 'streamflow_week8.txt'
-filepath = os.path.join('../../data', filename)
-print(os.getcwd())
-print(filepath)
+site = '09506000'
+start = '1989-01-01'
+end = '2020-10-16'
+url = "https://waterdata.usgs.gov/nwis/dv?cb_00060=on" \
+      "&format=rdb&site_no="+site+"&referred_module=sw&" \
+      "period=&begin_date="+start+"&end_date="+end
 
 # read in data
-data = pd.read_table(filepath, sep='\t', skiprows=30,
+data = pd.read_table(url, sep='\t', skiprows=30,
                      names=['agency_cd', 'site_no',
                             'datetime', 'flow', 'code'],
                      parse_dates=['datetime']
