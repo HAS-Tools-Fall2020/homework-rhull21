@@ -2,6 +2,9 @@
 ### 10232020
 ### Readme for assignment 9
 -----------------------
+### Grade
+3/3 - Excellent job!  Thanks for your help with the bug too!
+____
 0. IMPORTANT NOTES
   * IMPORTANT NOTE about accessing masonet datasets:
     - my token is finicky, because a user is only allowed to pull so much data before hitting paywall, which looks like the error below:
@@ -66,5 +69,5 @@
       ![](assets/temp.png)
 
     * 1-week-lagged flow over 52 weeks in 2019
-    
+
       ![](assets/flow.png)
