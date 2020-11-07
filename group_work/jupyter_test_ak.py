@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# Seems okay. Maybe doesn't keep the format on cells marked Raw NB Convert in Jupyter
+
 # In[3]:
 
 
