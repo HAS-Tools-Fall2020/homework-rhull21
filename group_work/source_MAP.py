@@ -46,144 +46,124 @@ def investigate_gdp(gdp):
 
 
 # %%
-# 1) Gages II USGS stream gauge dataset:
-# Download here:
-# https://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml#stdorder
+# 1) create a df of files, filepath, and name
+filepath = '../../spatial_data_nongit/'
+gpd_df = pd.DataFrame(columns=['names', 'file', 'gpd', 'zorder'])
 
-# 1a) file
-file = os.path.join('../../spatial_data_nongit/gagesII_9322_point_shapefile',
-                    'gagesII_9322_sept30_2011.shp')
-gages = gpd.read_file(file)
+names = ['gages', 'rivers', 'gwsi', 'huc', 'az']
 
-# 1b) Investigate
-investigate_gdp(gages)
+gpd_df['names'] = names
 
+filenames = ['gagesII_9322_point_shapefile/gagesII_9322_sept30_2011.shp',
+             'USA_Rivers_and_Streams-shp/'
+             '9ae73184-d43c-4ab8-940a-c8687f61952f2020328-1-r9gw71.0odx9.shp',
+             'GWSI_ZIP_10162020/Shape/GWSI_SITES.shp',
+             'Shape/WBDHU10.shp',
+             'tl_2016_04_cousub/tl_2016_04_cousub.shp']
 
-# %%
-# 2) Rivers
-# Download here:
-# https://www.sciencebase.gov/catalog/item/4fb55df0e4b04cb937751e02
+gpd_df['file'] = filenames
+gpd_df['file'] = filepath + gpd_df['file']
 
-# 2a) file
-filepath = '../../spatial_data_nongit/Lakes_and_Rivers_Shapefile/' \
-            'NA_Lakes_and_Rivers/data'
-filename = 'hydrography_l_rivers_v2.shp'
-file = os.path.join(filepath,
-                    filename)
-rivers = gpd.read_file(file)
-
-# 2b) Investigate
-investigate_gdp(rivers)
+# Import data into df and add to dataframe
+for i in range(len(gpd_df)):
+    gpd_df.iat[i, 2] = gpd.read_file(gpd_df['file'].iloc[i])
 
 # %%
-# 3) GWSI (Groundwater Site Inventory)
-# https://new.azwater.gov/gis
-# 3a) file
-filepath = '../../spatial_data_nongit/GWSI_ZIP_10162020/Shape/'
-filename = 'GWSI_SITES.shp'
-file = os.path.join(filepath,
-                    filename)
-gwsi = gpd.read_file(file)
-
-# 3b) Investigate
-investigate_gdp(gwsi)
-
-# %%
-# 4) 	NHD 20200616 for Arizona State or Territory Shapefile Model Version 2.2.1
-# https://www.usgs.gov/core-science-systems/ngp/national-hydrography/access-national-hydrography-products
-# https://viewer.nationalmap.gov/basic/?basemap=b1&category=nhd&title=NHD%20View
-# https://viewer.nationalmap.gov/basic/?basemap=b1&category=nhd&title=NHD%20View#productSearch
-
-# 4a)
-filepath = '../../spatial_data_nongit/Shape/'
-filename = 'WBDHU6.shp'
-file = os.path.join(filepath,
-                    filename)
-huc = gpd.read_file(file)
-# 4b) Investigate
-investigate_gdp(huc)
-
-
-# %%
-# 4c) Arizona extent
-# tl_2016_04_cousub/
-# https://catalog.data.gov/dataset/tiger-line-shapefile-2016-state-arizona-current-county-subdivision-state-based
-# 4e)
-filepath = '../../spatial_data_nongit/tl_2016_04_cousub/'
-filename = 'tl_2016_04_cousub.shp'
-file = os.path.join(filepath,
-                    filename)
-az = gpd.read_file(file)
-# 4f) Investigate
-investigate_gdp(az)
-
-# %%
-# Add some points
-# UA:  32.22877495, -110.97688412
-# STream gauge:  34.44833333, -111.7891667
+# 2) Add some points
+# Stream gauge:  34.44833333, -111.7891667
 point_list = np.array([[-111.7891667, 34.44833333]])
 
 # make these into spatial features
 point_geom = [Point(xy) for xy in point_list]
-point_geom
 
-# map a dataframe of these points
+# extract crs from huc (desired to apply)
+crs_in = gpd_df['gpd'].iloc[
+                            gpd_df.index[
+                            gpd_df['names'
+                                   ] == 'huc'].tolist()[0]
+                            ].crs
+
+# create point_df geodataframe
 point_df = gpd.GeoDataFrame(point_geom, columns=['geometry'],
-                            crs=huc.crs)
+                            crs=crs_in)
+
+# add to gpd_df
+gpd_df = gpd_df.append({'names': 'point_df',
+                        'file': '', 'gpd': point_df},
+                       ignore_index=True)
+
+# %%
+# 3) fix any crs issues
+# 4) Clip data extent for all layers based on extent of arizona
+
+# crs set
+# exract crs to set all to (from gages)
+crs_set = gpd_df['gpd'].iloc[
+                            gpd_df.index[
+                            gpd_df['names'
+                                   ] == 'gages'].tolist()[0]
+                            ].crs
+
+# clip set
+clip_set = gpd_df['gpd'].iloc[
+                            gpd_df.index[
+                            gpd_df['names'
+                                   ] == 'az'].tolist()[0]]
+
+# look through all gdf and (a) fix crs issues and (b) clip domains
+for i in range(len(gpd_df)):
+    gpd_df['gpd'].iloc[i].to_crs(crs_set, inplace=True)
+    print(gpd_df['gpd'].iloc[i].crs)
+    # clip is not working with this larger dataset
+#    gpd_df.iat[i, 2] = gpd.clip(gpd_df['gpd'].iloc[i], clip_set, False)
 
 
 # %%
-# 5) fix any crs issues
-# 5a) Check crs
-print("gages crs =", gages.crs, "\n")
-print("rivers crs =", rivers.crs, "\n")
-print("gwsi crs =", gwsi.crs, "\n")
-print("huc crs =", huc.crs, "\n")
-print("az crs =", az.crs, "\n")
-print("point crs =", point_df.crs, "\n")
 
-# 5b) Convert each crs to be the same
-rivers_proj = rivers.to_crs(gages.crs)
-gwsi_proj = gwsi.to_crs(gages.crs)
-huc_proj = huc.to_crs(gages.crs)
-az_proj = az.to_crs(gages.crs)
-point_df_proj = point_df.to_crs(gages.crs)
+# 6) Make a map of just Verde River Area
+extent = gpd_df['gpd'].iloc[1][gpd_df['gpd'].iloc[1]['Name'] == 'Verde River']
+rangef = (extent.total_bounds[2] - extent.total_bounds[0])
+# clip extent
+xmin, xmax, ymin, ymax = extent.total_bounds[0]-rangef, \
+                         extent.total_bounds[2]+rangef, \
+                         extent.total_bounds[1]-rangef, \
+                         extent.total_bounds[3]+rangef
 
-# 5c) Check to see if results stuck
-print("gages crs =", gages.crs, "\n")
-print("rivers crs =", rivers_proj.crs, "\n")
-print("gwsi crs =", gwsi_proj.crs, "\n")
-print("huc crs =", huc_proj.crs, "\n")
-print("az crs =", az_proj.crs, "\n")
-print("az crs =", point_df_proj.crs, "\n")
-
-# %%
-# 6) Clip data extent for rivers, gwsi, and gages based on huc
-# From: https://geopandas.org/reference/geopandas.clip.html
-rivers_proj_az = gpd.clip(rivers_proj, az_proj, True)
-gwsi_proj_az = gpd.clip(gwsi_proj, az_proj, True)
-gages_az = gpd.clip(gages, az_proj, True)
-
-# %%
-# 7) Make a map
-xmin, xmax, ymin, ymax = az_proj.total_bounds[0], az_proj.total_bounds[2], \
-                            az_proj.total_bounds[1], az_proj.total_bounds[3]
-
+# create plot
 fig, ax = plt.subplots(figsize=(10, 10))
 ax.set_xlim(xmin, xmax)
 ax.set_ylim(ymin, ymax)
-az_proj.plot(ax=ax, color='grey', zorder=0)
-huc_proj.boundary.plot(ax=ax, color='black', label='huc', zorder=5)
-rivers_proj_az.plot(ax=ax, color='blue', label='big rivers', zorder=6)
-gwsi_proj_az.plot(ax=ax, color='green', label='groundwater sites',
-                  zorder=3)
-gages_az.plot(ax=ax, color='red', marker='*',
-              label='river gages', zorder=4)
-point_df_proj.plot(ax=ax, color='orange', markersize=45,
-                   label='Verde River Gage', zorder=10)
-ax.set_title('Arizona Hydrogeologic Features')
-ax.set_xlabel('Easting')
-ax.set_ylabel('Northing')
-ax.legend()
+
+colorList = ['red', 'blue', 'green', 'grey', 'black', 'yellow']
+alphaList = [1, 1, 0.2, 0.5, 0.7, 1]
+zorderList = [6, 4, 3, 2, 1, 7]
+
+# loop through all gdps:
+for i in range(len(gpd_df)):
+    if gpd_df['names'].iloc[i] == 'huc':
+        gpd_df['gpd'].iloc[i].boundary.plot(ax=ax,
+                                            label=gpd_df['names'].iloc[i],
+                                            zorder=zorderList[i],
+                                            edgecolor=colorList[i],
+                                            alpha=alphaList[i])
+
+    else:
+        gpd_df['gpd'].iloc[i].plot(ax=ax,
+                                   label=gpd_df['names'].iloc[i],
+                                   zorder=zorderList[i],
+                                   color=colorList[i],
+                                   alpha=alphaList[i])
+
+extent.plot(ax=ax,
+            label='Verde River',
+            zorder=5,
+            color='purple',
+            linewidth=5)
+
+ax.set_title('Arizona Hydrologic Features')
+ax.set_xlabel('Latitude')
+ax.set_ylabel('Longitude')
+ax.legend(loc='lower left')
 plt.show()
 
+# %%

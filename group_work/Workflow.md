@@ -4,10 +4,14 @@ Managed by Quinn to prevent merge errors
 
 ## Roles
 ### Preliminary Roles: 
-1. Abigail: Want to do something with the map
-    * Can consult source_map.py for more info
-2. Quinn: Two week Forecast
-    * stick to ln guns
+1. Quinn: Want to do something with the map
+    * use a forloop to add new
+    * Add a basemap, too
+    * zoom in using Huc Basin
+    * Add a label
+2. Abigail: Two week Forecast
+    * try to use ln in prediction
+    * think about rain! 
 3. Alexa: 16 week forecast
     * Put into a loop
     * Dry years (2010-2020?)
