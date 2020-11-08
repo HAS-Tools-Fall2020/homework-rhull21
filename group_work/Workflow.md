@@ -3,7 +3,7 @@ Update workflow roles and status here
 Managed by Quinn to prevent merge errors
 
 ## Roles
-### Preliminary Roles: 
+### Preliminary Roles:
 1. Quinn: Want to do something with the map
     * use a forloop to add new
     * Add a basemap, too
@@ -11,18 +11,20 @@ Managed by Quinn to prevent merge errors
     * Add a label
 2. Abigail: Two week Forecast
     * try to use ln in prediction
-    * think about rain! 
+    * think about rain!
 3. Alexa: 16 week forecast
     * Put into a loop
     * Dry years (2010-2020?)
     * Automate any adjustments (if necessary)
 
-### Integration Roles: 
-1. Bring all our seperate python files into one script - **Unassigned**
-2. Write the markdown file - **Unassigned**
-3. Create a python file containing functions - **Unassigned**
+### Integration Roles:
+1. Bring all our seperate python files into one script - **Alexa**
+2. Write the markdown file - **Abigail**
+3. Create a python file containing functions - **Abigail**
+4. Map - **Quinn**
+4. Figure - **Quinn**
 
-## Workflow Approach: 
+## Workflow Approach:
 ### Preliminary
 * Each have our own file with respect to preliminary roles
     * **Deadline: Saturday am**
