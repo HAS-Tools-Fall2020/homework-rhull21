@@ -198,8 +198,8 @@ salt.plot(ax=ax,
           alpha=0.5)
 
 ax.set_title('Arizona Hydrologic Features')
-ax.set_xlabel('Latitude')
-ax.set_ylabel('Longitude')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
 ax.legend(loc='lower left')
 plt.show()
 

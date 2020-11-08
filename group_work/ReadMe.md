@@ -30,8 +30,10 @@ It should summarize the inputs and approach used and must include at\
 least 1 map and one graph.*\
 \
 Our approach was to center our forecast around Quinn's method of using the\
-natural log of flow.
-To date, this has given better results than the other processes we have tried. We also adopted a "divide and conquer" distribution of work to minimize conflicting updates to the shared repository.
+natural log of flow. \
+To date, this has given better results than the other processes we have tried. \
+We also adopted a "divide and conquer" distribution of work to minimize \
+conflicting updates to the shared repository.
 
 Our code utilizes functions that are stored in a separate file. The\
 first, *getForecastDates()*, creates a data frame of forecast dates\
@@ -44,11 +46,21 @@ then appended to an existing data frame. The final function,\
 *investigate_gdp*, reads in a geodataframe and outputs print statements\
 identifying relevant attributes.\
 \
-The map consists of n layers, ....
-# map details here
-...... . Centered on the Verde River, it provides\
-perspective on tributaries and relevance of other stream gages with respect to\ the river.\
-The figures provided here illustrate the distribution of flow data in both arithmetic and logarithmic form, supporting our decision to use log data.
+### Figures:
+
+The map consists of 8 layers, including the USGS stream gages and groundwater sites, \
+USA rivers and streams from ESRI, HUC10 watershed boundaries, and a census map \
+of the state of Arizona.
+
+
+![](group_map.png)
+
+Centered on the Verde River, it provides perspective on tributaries and relevance \
+of other stream gages with respect to the river.
+\
+\
+The figures provided below illustrate the distribution of flow data in both \
+arithmetic and logarithmic form, supporting our decision to use log data.
 
 ![](arith_plot.png)
 
