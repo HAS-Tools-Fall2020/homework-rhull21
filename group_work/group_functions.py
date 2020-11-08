@@ -65,8 +65,7 @@ def single_forecast(model, x):
     # returns prediction (in log space)
     return prediction
 
-
-# In[4]:
+# %% functions
 
 
 def investigate_gdp(gdp):
@@ -92,6 +91,39 @@ def investigate_gdp(gdp):
     print("geom =", gdp.geom_type, "\n")
     print("crs =", gdp.crs, "\n")
     print("spatial bounds =", gdp.total_bounds, "\n")
+
+# %%
+
+def add_pt_gdf(point_l, crs_i, gpd_in, nm_pts):
+    """The function reads in a numpy array of one or multiple spatial data values
+    with the intention of converting that into a pandas dataframe
+    and then appending this to the end of an existing pandas geodataframe
+
+    inputs:
+    point_l = a 2-D numpy array of spatial data values (like easting, northing)
+        or (like lat, long)
+    crs_in = the coordinate system of the dataframe, a crs object
+    gpd_in = the pandas dataframe containing geodataframe info
+    nm_pts = the name you would like to give the new row in the dataframe
+
+    output:
+    the inputted pandas dataframe container of gdp and other info
+    with a new record containing a gdp oflat / long data
+    """
+
+    # make these into spatial features
+    point_geom = [Point(xy) for xy in point_l]
+
+    # create point_df geodataframe
+    point_df = gpd.GeoDataFrame(point_geom, columns=['geometry'],
+                                crs=crs_i)
+
+    # add to gpd_df
+    gpd_in = gpd_in.append({'names': nm_pts,
+                            'file': '', 'gpd': point_df},
+                           ignore_index=True)
+
+    return gpd_in
 
 
 # In[ ]:
