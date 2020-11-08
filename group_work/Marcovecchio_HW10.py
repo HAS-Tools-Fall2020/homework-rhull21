@@ -5,6 +5,42 @@ import numpy as np
 
 
 # %%
+def getForecastDates():
+    """Get dataframe of forecast dates from csv file.
+
+    -------------------------------------------------
+    Parameters: None
+
+    -------------------------------------------------
+    Outputs:
+    forecast dates = dataframe
+                     contains columns with start and end
+                     dates split up into
+                     year, month, and day
+    """
+    #  Read in the forecast dates for each week from csv
+    filename = "Seasonal_Forecast_Dates.csv"
+    forecast_dates = pd.read_csv(filename, skiprows=1,
+                                 names=['week', 'start_date', 'end_date'])
+    forecast_dates[["start_year", "start_month", "start_day"]] \
+        = forecast_dates["start_date"].\
+        astype(str).str.split("-", expand=True)
+
+    # split forecast start and end dates into year, month, and day
+    forecast_dates['start_year'] = forecast_dates['start_year'].astype(int)
+    forecast_dates['start_month'] = forecast_dates['start_month'].astype(int)
+    forecast_dates['start_day'] = forecast_dates['start_day'].astype(int)
+    forecast_dates[["end_year", "end_month", "end_day"]] \
+        = forecast_dates["end_date"].\
+        astype(str).str.split("-", expand=True)
+    forecast_dates['end_year'] = forecast_dates['end_year'].astype(int)
+    forecast_dates['end_month'] = forecast_dates['end_month'].astype(int)
+    forecast_dates['end_day'] = forecast_dates['end_day'].astype(int)
+
+    return forecast_dates
+
+
+# %%
 # Prepare 16 week forecasts
 
 # get data from beginning of semester
@@ -24,25 +60,6 @@ data_16wk['year'] = data_16wk['year'].astype(int)  # year integer
 data_16wk['month'] = data_16wk['month'].astype(int)  # month integer
 data_16wk['day'] = data_16wk['day'].astype(int)  # day integer
 
-#  Read in the forecast dates for each week from csv
-filename = "Seasonal_Forecast_Dates.csv"
-forecast_dates = pd.read_csv(filename, skiprows=1,
-                             names=['week', 'start_date', 'end_date'])
-forecast_dates[["start_year", "start_month", "start_day"]] \
-              = forecast_dates["start_date"].\
-              astype(str).str.split("-", expand=True)
-
-# split forecast start and end dates into year, month, and day
-forecast_dates['start_year'] = forecast_dates['start_year'].astype(int)
-forecast_dates['start_month'] = forecast_dates['start_month'].astype(int)
-forecast_dates['start_day'] = forecast_dates['start_day'].astype(int)
-forecast_dates[["end_year", "end_month", "end_day"]] \
-              = forecast_dates["end_date"].\
-              astype(str).str.split("-", expand=True)
-forecast_dates['end_year'] = forecast_dates['end_year'].astype(int)
-forecast_dates['end_month'] = forecast_dates['end_month'].astype(int)
-forecast_dates['end_day'] = forecast_dates['end_day'].astype(int)
-
 # get annual average streamflow
 year_means = np.zeros((32, 2))
 for j in range(1989, 2021):
@@ -54,11 +71,12 @@ driest = pd.DataFrame(year_means, columns=['year', 'mean']).\
          nsmallest(2, 'mean')
 driest.index = range(2)
 driest['year'] = driest['year'].astype(int)
-print(driest.year[0])
 
 # make a dataframe that only contains data from the driest years
 dry_years_data = data_16wk[(data_16wk.year == driest.year[0]) |
                            (data_16wk.year == driest.year[1])]
+
+forecast_dates = getForecastDates()
 
 # initialize list for weekly forecasts
 forecasts = []
