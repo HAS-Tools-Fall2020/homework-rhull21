@@ -47,12 +47,22 @@ def getForecastDates():
 # In[3]:
 
 
-def forecast(x):
+def single_forecast(model, x):
     """Function performing the forecast calculation, where
+        model = model used to generate prediction
+            (must be a log to log scale autoregression)
         x = starting value of streamflow, can be integer or float
+            (input must be in natural log scale!)
+
+        returns: a prediction
+            (note the prediction is returned in natural log scale)
+            (however, the result is printed in nonlog scale)
     """
-    prediction = ((model.intercept_ + model.coef_* x *increase)-2).round(2)
-    print('forecast value', prediction)
+    # makes a prediction (in log space)
+    prediction = (model.intercept_ + model.coef_ * x)
+    # prints a prediction (in arithmetic space)
+    print('forecast value', np.exp(prediction).round(2))
+    # returns prediction (in log space)
     return prediction
 
 

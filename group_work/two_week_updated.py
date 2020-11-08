@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 # In[1]:
 
 
@@ -80,7 +77,7 @@ def single_forecast(model, x):
             (however, the result is printed in nonlog scale)
     """
     # makes a prediction (in log space)
-    prediction = (model.intercept_ + model.coef_ * x) * adjust
+    prediction = (model.intercept_ + model.coef_ * x)
     # prints a prediction (in arithmetic space)
     print('forecast value', np.exp(prediction).round(2))
     # returns prediction (in log space)
@@ -89,51 +86,16 @@ def single_forecast(model, x):
 
 # In[7]:
 
-# Identify starting value for model prediction and set adjusting value
+# Identify starting value for model prediction
 start_val = flow_weekly.flow[-1]
 # starting value in natural log (needed for regression)
 start_val_ln = np.log(start_val)
 # create two week forecast (saved in natural log)
+# set adjusting value for forecast
+adjust = 1.01
 two_week_forecast = np.zeros(2)
 for i in range(1):
     print('week 1')
-    two_week_forecast[0] = single_forecast(model, start_val_ln)
+    two_week_forecast[0] = single_forecast(model, start_val_ln * adjust) 
     print('week 2')
-    two_week_forecast[1] = single_forecast(model, two_week_forecast[0])
-
-# %%
-# QH Addition (1)
-start_val = np.log(flow_weekly.flow[-1])
-print('start value in log =', start_val)
-print('start value in arith =', np.exp(start_val))
-prediction = (model.intercept_ + model.coef_* start_val)
-print('prediction in log =', prediction)
-print('prediction in arith =', np.exp(prediction))
-
-# %%
-# QH Addition (2)
-# Histogram of flow data in natural log space
-textstr1 = '\n'.join((
-                    'The flow data have',
-                    'a nearly normal distribution',
-                    'in log space'))
-fig, ax = plt.subplots()
-ax.hist(train['flow'], bins=10)
-ax.set(xlabel='flow in natural log scale', ylabel='frequency', ylim=(0, 100))
-ax.text(0.4, 0.95, textstr1, transform=ax.transAxes, fontsize=14,
-        verticalalignment='top')
-plt.show()
-
-# Histogram of flow data in natural log space
-textstr2 = '\n'.join((
-                    'The flow data have',
-                    'a very skewed distribution',
-                    'in arithmetic space'))
-fig, ax = plt.subplots()
-ax.hist(np.exp(train['flow']), bins=10)
-ax.set(xlabel='flow in arithmetic scale', ylabel='frequency', ylim=(0, 100))
-ax.text(0.4, 0.95, textstr2, transform=ax.transAxes, fontsize=14,
-        verticalalignment='top')
-plt.show()
-
-# %%
+    two_week_forecast[1] = single_forecast(model, two_week_forecast[0] * adjust)
