@@ -3,9 +3,9 @@
 ### Quinn Hull, Alexa Marcovecchio, Abigail Kahler
 
 
-### Week 1 Forecast:  cfs
+### Week 1 Forecast:  132.98 cfs
 
-### Week 2 forecast:  cfs
+### Week 2 forecast:  139.2 cfs
 
 #### Summary of collaboration:
 *What did each team member bring to the table,\
