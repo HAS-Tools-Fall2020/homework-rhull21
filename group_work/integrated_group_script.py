@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import geopandas as gpd
-from shapely.geometry import Point
 from pprint import pprint
 from sklearn.linear_model import LinearRegression
 import group_functions as gf
@@ -93,6 +92,7 @@ for i in range(16):
 print('Weekly Forecasts:', forecasts)
 
 # %%
+# Prepare 2 week forecasts and plots
 
 # Input start and end dates
 site = '09506000'
@@ -145,7 +145,11 @@ for i in range(1):
     two_week_forecast[1] = gf.single_forecast(model,
                                               two_week_forecast[0] * adjust)
 
+gf.hist(train['flow'])
+
 # %%
+# Makes map. Shapefiles too big for GitHub.
+# Need to download shapefiles locally before running.
 
 # 1) create a df of files, filepath, and name
 filepath = '../../spatial_data_nongit/'
