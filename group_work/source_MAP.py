@@ -7,12 +7,9 @@
 # -------------------------------
 # %%
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 import pandas as pd
 import numpy as np
-import os
 import geopandas as gpd
-import fiona
 from shapely.geometry import Point
 # import contextily as ctx
 from pprint import pprint
@@ -120,10 +117,8 @@ gpd_df = add_pt_gdf(point_list, crs_in, gpd_df, 'points_df')
 # 4) Clip data extent for all layers based on extent of arizona
 
 # clip set
-clip_set = gpd_df['gpd'].iloc[
-                            gpd_df.index[
-                            gpd_df['names'
-                                   ] == 'az'].tolist()[0]]
+clip_set = gpd_df['gpd'].iloc[gpd_df.index[gpd_df['names'] ==
+                              'az'].tolist()[0]]
 
 # crs set
 # exract crs to set all to (from gages)
@@ -132,7 +127,7 @@ crs_set = clip_set.crs
 # look through all gdf and (a) fix crs issues and (b) clip domains
 for i in range(len(gpd_df)):
     gpd_df['gpd'].iloc[i].to_crs(crs_set, inplace=True)
-    print(gpd_df['gpd'].iloc[i].crs)
+    pprint(gpd_df['gpd'].iloc[i].crs)
     # clip is not working with this larger dataset
     gpd_df.iat[i, 2] = gpd.clip(gpd_df['gpd'].iloc[i], clip_set, False)
 

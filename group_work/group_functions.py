@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import geopandas as gpd
 import matplotlib.pyplot as plt
+from shapely.geometry import Point
 
 
 # In[2]:
@@ -31,13 +32,15 @@ def getForecastDates():
     filename = "Seasonal_Forecast_Dates.csv"
     forecast_dates = pd.read_csv(filename, skiprows=1,
                                  names=['week', 'start_date', 'end_date'])
-    forecast_dates[["start_year", "start_month", "start_day"]]         = forecast_dates["start_date"].        astype(str).str.split("-", expand=True)
+    forecast_dates[["start_year", "start_month", "start_day"]] = \
+        forecast_dates["start_date"].astype(str).str.split("-", expand=True)
 
     # split forecast start and end dates into year, month, and day
     forecast_dates['start_year'] = forecast_dates['start_year'].astype(int)
     forecast_dates['start_month'] = forecast_dates['start_month'].astype(int)
     forecast_dates['start_day'] = forecast_dates['start_day'].astype(int)
-    forecast_dates[["end_year", "end_month", "end_day"]]         = forecast_dates["end_date"].        astype(str).str.split("-", expand=True)
+    forecast_dates[["end_year", "end_month", "end_day"]] = \
+        forecast_dates["end_date"].astype(str).str.split("-", expand=True)
     forecast_dates['end_year'] = forecast_dates['end_year'].astype(int)
     forecast_dates['end_month'] = forecast_dates['end_month'].astype(int)
     forecast_dates['end_day'] = forecast_dates['end_day'].astype(int)
@@ -88,13 +91,13 @@ def investigate_gdp(gdp):
     print("\n")
 
     # Looking at the read-only method
-    pprint(vars(gdp))
+    print(vars(gdp))
     print("geom =", gdp.geom_type, "\n")
     print("crs =", gdp.crs, "\n")
     print("spatial bounds =", gdp.total_bounds, "\n")
 
-# %%
 
+# %%
 def add_pt_gdf(point_l, crs_i, gpd_in, nm_pts):
     """The function reads in a numpy array of one or multiple spatial data values
     with the intention of converting that into a pandas dataframe
@@ -136,7 +139,8 @@ def hist(data_in):
 
     Abigail, put in train['flow']
 
-    data_in = a series from a pandas dataframe containing streamflow data in log
+    data_in = a series from a pandas dataframe
+              containing streamflow data in log
 
     shows two histograms, one of the data represented in log space and
     the other represented in arithmetic space
@@ -154,7 +158,8 @@ def hist(data_in):
                         'in log space'))
     fig, ax = plt.subplots()
     ax.hist(data_in, bins=10)
-    ax.set(xlabel='flow in natural log scale', ylabel='frequency', ylim=(0, 100))
+    ax.set(xlabel='flow in natural log scale',
+           ylabel='frequency', ylim=(0, 100))
     ax.text(0.4, 0.95, textstr1, transform=ax.transAxes, fontsize=14,
             verticalalignment='top')
     plt.show()
@@ -166,8 +171,8 @@ def hist(data_in):
                         'in arithmetic space'))
     fig, ax = plt.subplots()
     ax.hist(np.exp(data_in), bins=10)
-    ax.set(xlabel='flow in arithmetic scale', ylabel='frequency', ylim=(0, 100))
+    ax.set(xlabel='flow in arithmetic scale',
+           ylabel='frequency', ylim=(0, 100))
     ax.text(0.4, 0.95, textstr2, transform=ax.transAxes, fontsize=14,
             verticalalignment='top')
     plt.show()
-

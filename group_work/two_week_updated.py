@@ -3,27 +3,23 @@
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import datetime
-import os
-import json
-import urllib.request as req
-import urllib
 from sklearn.linear_model import LinearRegression
 
 
 # In[2]:
 
 
-# Input start and end dates 
+# Input start and end dates
 site = '09506000'
 start = '1990-01-01'
 end = '2020-11-07'
 
-url = "https://waterdata.usgs.gov/nwis/dv?cb_00060=on&format=rdb&site_no=" + site +       "&referred_module=sw&period=&begin_date=" + start + "&end_date=" + end
+url = "https://waterdata.usgs.gov/nwis/dv?cb_00060=on&format=rdb&site_no=" + \
+      site + "&referred_module=sw&period=&begin_date=" + start + \
+      "&end_date=" + end
 data = pd.read_table(url, skiprows=30, names=['agency_cd', 'site_no',
-                                               'datetime', 'flow', 'code'],
-                      parse_dates=['datetime']) 
+                                              'datetime', 'flow', 'code'],
+                     parse_dates=['datetime'])
 
 
 # In[3]:
@@ -41,7 +37,7 @@ flow_weekly = data.resample("W", on='datetime').mean()
 # In[4]:
 
 
-# Set flow_weekly to natural log 
+# Set flow_weekly to natural log
 flow_weekly_log = np.log(flow_weekly)
 flow_weekly_log['flow_tm1'] = flow_weekly_log['flow'].shift(1)
 
@@ -96,6 +92,7 @@ adjust = 1.01
 two_week_forecast = np.zeros(2)
 for i in range(1):
     print('week 1')
-    two_week_forecast[0] = single_forecast(model, start_val_ln * adjust) 
+    two_week_forecast[0] = single_forecast(model, start_val_ln * adjust)
     print('week 2')
-    two_week_forecast[1] = single_forecast(model, two_week_forecast[0] * adjust)
+    two_week_forecast[1] = single_forecast(model,
+                                           two_week_forecast[0] * adjust)
