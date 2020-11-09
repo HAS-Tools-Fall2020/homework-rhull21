@@ -50,7 +50,9 @@ identifying relevant attributes.\
 
 The map consists of 8 layers, including the USGS stream gages and groundwater sites, \
 USA rivers and streams from ESRI, HUC10 watershed boundaries, and a census map \
-of the state of Arizona.
+of the state of Arizona. The script used to make the map can be found in \
+the script `source_MAP.py` (but will not run because the source spatial data \
+are saved locally and not available on github).
 
 
 ![](group_map.png)

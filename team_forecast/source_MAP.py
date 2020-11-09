@@ -13,65 +13,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 # import contextily as ctx
 from pprint import pprint
-
-# %% functions
-
-
-def investigate_gdp(gdp):
-    """The function reads in a geodataframe
-    with the intention of printing interesting
-    attributes of that dataframe.
-
-    mostly print statements
-
-    returns the given gdp
-    """
-
-    print("Details from the given geodataframe: ", "\n")
-    # initial attributes
-    print("type =", type(gdp), "\n")
-    print("columns =", gdp.columns, "\n")
-    print("shape =", gdp.shape, "\n")
-    gdp.head()
-    print("\n")
-
-    # Looking at the read-only method
-    pprint(vars(gdp))
-    print("geom =", gdp.geom_type, "\n")
-    print("crs =", gdp.crs, "\n")
-    print("spatial bounds =", gdp.total_bounds, "\n")
-
-
-def add_pt_gdf(point_l, crs_i, gpd_in, nm_pts):
-    """The function reads in a numpy array of one or multiple spatial data values
-    with the intention of converting that into a pandas dataframe
-    and then appending this to the end of an existing pandas geodataframe
-
-    inputs:
-    point_l = a 2-D numpy array of spatial data values (like easting, northing)
-        or (like lat, long)
-    crs_in = the coordinate system of the dataframe, a crs object
-    gpd_in = the pandas dataframe containing geodataframe info
-    nm_pts = the name you would like to give the new row in the dataframe
-
-    output:
-    the inputted pandas dataframe container of gdp and other info
-    with a new record containing a gdp oflat / long data
-    """
-
-    # make these into spatial features
-    point_geom = [Point(xy) for xy in point_l]
-
-    # create point_df geodataframe
-    point_df = gpd.GeoDataFrame(point_geom, columns=['geometry'],
-                                crs=crs_i)
-
-    # add to gpd_df
-    gpd_in = gpd_in.append({'names': nm_pts,
-                            'file': '', 'gpd': point_df},
-                           ignore_index=True)
-
-    return gpd_in
+import group_functions as gf
 
 
 # %%
@@ -110,7 +52,7 @@ crs_in = gpd_df['gpd'].iloc[
                             ].crs
 
 # add a line containing point_list to gpd_df including data frame of points
-gpd_df = add_pt_gdf(point_list, crs_in, gpd_df, 'points_df')
+gpd_df = gf.add_pt_gdf(point_list, crs_in, gpd_df, 'points_df')
 
 # %%
 # 3) fix any crs issues
@@ -128,7 +70,6 @@ crs_set = clip_set.crs
 for i in range(len(gpd_df)):
     gpd_df['gpd'].iloc[i].to_crs(crs_set, inplace=True)
     pprint(gpd_df['gpd'].iloc[i].crs)
-    # clip is not working with this larger dataset
     gpd_df.iat[i, 2] = gpd.clip(gpd_df['gpd'].iloc[i], clip_set, False)
 
 
