@@ -57,6 +57,9 @@ model.fit(x, y)
 r_sq = model.score(x, y)
 print('coefficient of determination:', np.round(r_sq, 2))
 
+# %%
+# Check skewness and verify log distribution of flow is nearer normal
+hist(train['flow'])
 
 # In[6]:
 
