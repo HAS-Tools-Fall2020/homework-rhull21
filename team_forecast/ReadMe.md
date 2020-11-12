@@ -2,6 +2,10 @@
 ## Team members:
 ### Quinn Hull, Alexa Marcovecchio, Abigail Kahler
 
+___
+### Grade  
+3/3 - Great job. I really like your map! Nice job working together to get it done.
+___
 
 ### Week 1 Forecast:  132.98 cfs
 
