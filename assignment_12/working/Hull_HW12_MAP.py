@@ -3,6 +3,7 @@
 # HW 10 - mapping
 # 11012020
 # Modified from Week10_starterscript.py
+# Modified from Hull_HW10.py
 # -------------------------------
 # %%
 import matplotlib.pyplot as plt
@@ -140,14 +141,16 @@ print("az crs =", az.crs, "\n")
 print("point crs =", point_df.crs, "\n")
 
 # 5b) Convert each crs to be the same
-rivers_proj = rivers.to_crs(gages.crs)
-gwsi_proj = gwsi.to_crs(gages.crs)
-huc_proj = huc.to_crs(gages.crs)
-az_proj = az.to_crs(gages.crs)
-point_df_proj = point_df.to_crs(gages.crs)
+
+gages_proj = gages.to_crs(az.crs)
+rivers_proj = rivers.to_crs(az.crs)
+gwsi_proj = gwsi.to_crs(az.crs)
+huc_proj = huc.to_crs(az.crs)
+az_proj = az.to_crs(az.crs)
+point_df_proj = point_df.to_crs(az.crs)
 
 # 5c) Check to see if results stuck
-print("gages crs =", gages.crs, "\n")
+print("gages crs =", gages_proj.crs, "\n")
 print("rivers crs =", rivers_proj.crs, "\n")
 print("gwsi crs =", gwsi_proj.crs, "\n")
 print("huc crs =", huc_proj.crs, "\n")
@@ -163,26 +166,29 @@ gages_az = gpd.clip(gages, az_proj, True)
 
 # %%
 # 7) Make a map
-extent = az_proj
+extent = huc_proj[huc_proj['Name']=='Verde']
 xmin, xmax, ymin, ymax = extent.total_bounds[0], extent.total_bounds[2], \
                             extent.total_bounds[1], extent.total_bounds[3]
 
-fig, ax = plt.subplots(figsize=(10, 10))
-ax.set_xlim(xmin, xmax)
-ax.set_ylim(ymin, ymax)
-az_proj.plot(ax=ax, color='grey', zorder=0)
-huc_proj.boundary.plot(ax=ax, color='black', label='huc', zorder=5)
-rivers_proj_az.plot(ax=ax, color='blue', label='big rivers', zorder=6)
-gwsi_proj_az.plot(ax=ax, color='green', label='groundwater sites',
-                  zorder=3)
-gages_az.plot(ax=ax, color='red', marker='*',
-              label='river gages', zorder=4)
-point_df_proj.plot(ax=ax, color='orange', markersize=45,
-                   label='Verde River Gage', zorder=10)
-ax.set_title('Arizona Hydrogeologic Features')
-ax.set_xlabel('Easting')
-ax.set_ylabel('Northing')
-ax.legend()
-plt.show()
+print(xmin, xmax, ymin, ymax)
+# fig, ax = plt.subplots(figsize=(10, 10))
+# ax.set_xlim(xmin, xmax)
+# ax.set_ylim(ymin, ymax)
+# az_proj.plot(ax=ax, color='grey', zorder=0)
+# huc_proj.boundary.plot(ax=ax, color='black', label='huc', zorder=5)
+# rivers_proj_az.plot(ax=ax, color='blue', label='big rivers', zorder=6)
+# gwsi_proj_az.plot(ax=ax, color='green', label='groundwater sites',
+#                   zorder=3)
+# gages_az.plot(ax=ax, color='red', marker='*',
+#               label='river gages', zorder=4)
+# point_df_proj.plot(ax=ax, color='orange', markersize=45,
+#                    label='Verde River Gage', zorder=10)
+# ax.set_title('Arizona Hydrogeologic Features')
+# ax.set_xlabel('Easting')
+# ax.set_ylabel('Northing')
+# ax.legend()
+# plt.show()
 
+# %%
+huc_proj[huc_proj['Name']=='Verde']
 # %%
