@@ -2,6 +2,9 @@
 Quinn Hull
 11/16/2020
 
+## Grade
+3/3 - Nice work!  The normalization thing is great and is something lots of other people are running up against too so I might ask you to share. Also thanks for the dataset pointer. 
+
 ## Contents
 For homework 12, there are three files, including:
   1. This readme (Hull_HW12.md)
