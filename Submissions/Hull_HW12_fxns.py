@@ -227,7 +227,7 @@ def norm_it(startdate, enddate, dfin, dfname, l_back=1):
     dfin[dfname+'_norm'] = scaler.fit_transform(dfin[
                                             dfname].to_numpy().reshape(-1, 1))
     # # lag
-    dfin[dfname+'_norm_tm'+str(l_back)] = dfin[dfname+'_norm'].shift(1)
+    dfin[dfname+'_norm_tm'+str(l_back)] = dfin[dfname+'_norm'].shift(l_back)
     return dfin, scaler
 
 

@@ -322,3 +322,5 @@ for i in range(16):
                 np.round(np.exp(fn.denorm_it(x_lastweekflow, scale1)), 2))
 
 # %%
+plt.hist(t['flow'])
+# %%
