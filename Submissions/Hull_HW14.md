@@ -6,6 +6,8 @@ Week 14
 11/25/2020
 
 --
+## Grade
+3/3 - nice work!  I like your two comparison cases. 
 
 ## Overview:
   * I decided to try two different styles of repo on this assignment to maximize the probability of 'success', and compare FAIRly.
