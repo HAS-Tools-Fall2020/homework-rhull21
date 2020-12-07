@@ -9,28 +9,28 @@ Week 15
   * This week I tried to harness the power of LSTM to make my predictions. I built a neural network in PyTorch with the following hyperparameters:
 
 
-      `# For LSTM
-      num_epochs = 4000 # number of times iterating through the model
-      learning_rate = 0.01 # rate of learning
+         # For LSTM
+         num_epochs = 4000 # number of times iterating through the model
+         learning_rate = 0.01 # rate of learning
 
-      # Define rnn model
-      # self.input_size = input_size # size of the inputs (i.e. 5 variables)
-      ins = 3
-      # self.hidden_size = hidden_size # number of cells in hidden layer
-      his = 40
-      # self.num_layers = num_layers # number of hidden layers (=1)
-      nlay = 1
-      # self.class_size = class_size # size of the extra hidden linear layer (I think this is number of layers...
-      cs = 1
-      # drop_out rate (to prevent over fitting)
-      do = 0.5
-      # type of neural network (lstm)
-      rt = 'lstm'
+         # Define rnn model
+         # self.input_size = input_size # size of the inputs (i.e. 5 variables)
+         ins = 3
+         # self.hidden_size = hidden_size # number of cells in hidden layer
+         his = 40
+         # self.num_layers = num_layers # number of hidden layers (=1)
+         nlay = 1
+         # self.class_size = class_size # size of the extra hidden linear layer (I think this is number of layers...
+         cs = 1
+         # drop_out rate (to prevent over fitting)
+         do = 0.5
+         # type of neural network (lstm)
+         rt = 'lstm'
 
-      # Define optimization function
-      optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)   # optimize all rnn parameters
-      # Define loss function
-      loss_func = nn.MSELoss()`
+         # Define optimization function
+         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)   # optimize all rnn parameters
+         # Define loss function
+         loss_func = nn.MSELoss()
 
 
   * consult the code (lines  640 - 690) for more details on the structure. This neural network actually uses a dropout method to prevent over-fitting and has an extra convolutional layer below the LSTM network that helps with filtering the data.
