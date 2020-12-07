@@ -9,7 +9,7 @@ Week 15
   * This week I tried to harness the power of LSTM to make my predictions. I built a neural network in PyTorch with the following hyperparameters:
 
 
-      # For LSTM
+      `# For LSTM
       num_epochs = 4000 # number of times iterating through the model
       learning_rate = 0.01 # rate of learning
 
@@ -30,7 +30,7 @@ Week 15
       # Define optimization function
       optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)   # optimize all rnn parameters
       # Define loss function
-      loss_func = nn.MSELoss()
+      loss_func = nn.MSELoss()`
 
 
   * consult the code (lines  640 - 690) for more details on the structure. This neural network actually uses a dropout method to prevent over-fitting and has an extra convolutional layer below the LSTM network that helps with filtering the data.
