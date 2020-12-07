@@ -16,8 +16,8 @@ Week 14
 
     2. A 'research' GitHub repo tied to an article.
       * Jianfeng Zhang, Yan Zhu, Xiaoping Zhang, Ming Ye, Jinzhong Yang, Developing a Long Short-Term Memory (LSTM) based model for predicting water table depth in agricultural areas, Journal of Hydrology, Volume 561, 2018, Pages 918-929, ISSN 0022-1694, https://doi.org/10.1016/j.jhydrol.2018.04.065.
-      * Article: https://www.sciencedirect.com/science/article/pii/S0022169418303184
-      * Repo: https://github.com/jfzhang95/Water-Table-Depth-Prediction-PyTorch
+        * Article: https://www.sciencedirect.com/science/article/pii/S0022169418303184
+        * Repo: https://github.com/jfzhang95/Water-Table-Depth-Prediction-PyTorch
 
     * Henceforth the projects/repos will be referred to as **(1)** and **(2)**
 
