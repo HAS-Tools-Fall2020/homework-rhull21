@@ -4,6 +4,8 @@ Quinn Hull
 Week 15
 12/07/2020
 --
+### Grade
+3/3  - Great job!  And thanks for the pointer on the interactive session I will try to remember to bring this up  tomorrow. Also very interesting about the GPU speedups it probably had to do with your settings and the type of GPU you are using. 
 
 * Overview:
   * This week I tried to harness the power of LSTM to make my predictions. I built a neural network in PyTorch with the following hyperparameters:
